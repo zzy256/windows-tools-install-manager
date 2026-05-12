@@ -24,32 +24,53 @@ A Claude Code / Codex skill that **standardizes installs of system-level Windows
 
 **Copy the entire block below (including the `>` quote marks) and paste to your AI:**
 
-> Please install AND configure this skill for me: `https://github.com/zzy256/windows-tools-install-manager`
+> Install and configure the **windows-tools-install-manager** skill from `https://github.com/zzy256/windows-tools-install-manager` for me.
 >
-> Steps:
+> Execute these steps **in order**. Do not skip any. Do not assume defaults — ask me when the prompt says to ask.
 >
-> 1. **Fetch** the raw content of `skills/windows-tools-install-manager/SKILL.md` from the repo's `main` branch (use `raw.githubusercontent.com/zzy/windows-tools-install-manager/main/skills/windows-tools-install-manager/SKILL.md`)
+> **Step 1 — Fetch.** Download this file:
+> `https://raw.githubusercontent.com/zzy256/windows-tools-install-manager/main/skills/windows-tools-install-manager/SKILL.md`
 >
-> 2. **Save** it to:
->    - `~/.claude/skills/windows-tools-install-manager/SKILL.md` (for Claude Code)
->    - AND/OR `~/.agents/skills/windows-tools-install-manager/SKILL.md` (for Codex)
->    - Create parent directories as needed
+> **Step 2 — Save.** Write that file to BOTH paths below (create parent dirs as needed):
+> - Claude Code: `$env:USERPROFILE\.claude\skills\windows-tools-install-manager\SKILL.md` (Windows) — or `~/.claude/skills/windows-tools-install-manager/SKILL.md`
+> - Codex: `$env:USERPROFILE\.agents\skills\windows-tools-install-manager\SKILL.md` (Windows) — or `~/.agents/skills/windows-tools-install-manager/SKILL.md`
 >
-> 3. **Auto-configure right now** (don't wait for the first natural trigger):
->    Open the SKILL.md you just saved, find the section titled **"Step 0 — Path Configuration"**, then execute its **"Case 2 — Config file MISSING"** branch on my behalf immediately. That means:
->    - Show me the full path explanation from Step 0 (what `<INSTALL_ROOT>` is, where it gets used, with examples and default suggestion)
->    - Wait for my answer (a path, or "OK" for the default `D:\Tools`)
->    - Validate it looks like an absolute Windows path
->    - Save my answer to `~/.config/claude-skills/windows-tools-install-manager.json` in the exact format Step 0 specifies (`{"install_root": "..."}`)
->    - Confirm the config to me
+> **Step 3 — ASK ME this question NOW. STOP and wait for my reply before proceeding.**
 >
-> 4. **Summarize** what got installed (file paths), what was configured (the chosen InstallRoot), and what the skill does in one short paragraph.
+> Word it like this (you can adapt slightly but keep the structure + default + custom options):
 >
-> 5. **Recommend** I restart my agent (Claude Code / Codex) so it picks up the new skill.
+> > "This skill will install all system-level tools (ffmpeg, 7zip, tesseract, gh CLI, OBS, etc.) under ONE root directory you choose. Each tool gets its own subfolder there:
+> > - `<YOUR_ROOT>\ffmpeg\`
+> > - `<YOUR_ROOT>\7zip\`
+> > - `<YOUR_ROOT>\tesseract\`
+> >
+> > ⚠️ This path is NOT where the skill itself is installed (the skill is already at `~/.claude/skills/`). This is where future tool installs will go.
+> >
+> > Where should the root be on your machine?
+> > - Reply **`OK`** or **`默认`** to use the default `D:\Tools`
+> > - Or paste a custom absolute Windows path like `C:\MyTools`, `D:\Apps`, `E:\Software`"
 >
-> 6. **Do NOT try to run `setup.ps1`** — it requires interactive stdin that won't work in your session. You're replacing what setup.ps1 does (writing the config + dropping SKILL.md) by doing steps 2 and 3 above.
+> Wait for my reply. **Do not proceed to Step 4 until I have answered.**
 >
-> 7. **Recommend** the sister skill `miniconda-python-env` for Python work: `https://github.com/zzy256/miniconda-python-env` (install it the same way if I'm interested).
+> **Step 4 — Save my answer to a config file.** Write JSON to this path (create parent dir if needed):
+> - Windows: `$env:USERPROFILE\.config\claude-skills\windows-tools-install-manager.json`
+> - Mac/Linux: `~/.config/claude-skills/windows-tools-install-manager.json`
+>
+> Exact content — substitute my answer (strip trailing slashes; if I said `OK`/`默认`, use `D:\\Tools`):
+>
+> ```json
+> {"install_root": "<my-path-here>"}
+> ```
+>
+> Use `\\` for backslashes in JSON. Save as UTF-8.
+>
+> **Step 5 — Verify.** Read back the JSON file you just wrote, paste its contents to me, then say: **"✓ Skill installed and configured. Restart Claude Code / Codex to activate it."**
+>
+> **Step 6 — Recommend** the sister skill for Python work: `https://github.com/zzy256/miniconda-python-env` (install the same way).
+>
+> ⛔ **DO NOT** run `setup.ps1` — it needs interactive stdin which won't work in your session. Steps 2 + 4 above replace what setup.ps1 does.
+>
+> ⛔ **DO NOT** skip Step 3 or Step 4. If you skip them, the skill triggers a config prompt weeks later when the user has forgotten the context — that's the exact failure mode this install flow prevents.
 
 After your AI finishes the steps above, **restart your agent**. The skill is installed AND configured — it'll work silently from your first real install task.
 
