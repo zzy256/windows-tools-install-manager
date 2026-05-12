@@ -1,0 +1,42 @@
+{
+  "name": "windows-tools-install-manager",
+  "version": "1.0.0",
+  "description": "Standardize installs of system-level Windows tools (ffmpeg, 7zip, OCR engines, CLIs, GUI apps) to a configurable root with user-scope PATH auto-management. Self-configuring on first use.",
+  "author": {
+    "name": "zzy",
+    "email": "ziyi.zheng0320@gmail.com"
+  },
+  "homepage": "https://github.com/zzy/windows-tools-install-manager",
+  "repository": "https://github.com/zzy/windows-tools-install-manager",
+  "license": "MIT",
+  "keywords": [
+    "windows",
+    "install",
+    "tools",
+    "ffmpeg",
+    "7zip",
+    "tesseract",
+    "path-management",
+    "skill",
+    "claude-code",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Windows Tools Install Manager",
+    "shortDescription": "Install system-level Windows tools to one configurable root, with PATH auto-management.",
+    "longDescription": "Standardizes how AI agents install system-level Windows tools (ffmpeg, 7zip, tesseract, gh CLI, OBS, etc.) to a single user-configurable root directory. Auto-adds installed tools to user-scope PATH, enforces user confirmation before every install, prefers portable / silent-install methods with custom path flags, and excludes Python packages (those go to the sister skill miniconda-python-env).",
+    "developerName": "zzy",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/zzy/windows-tools-install-manager",
+    "defaultPrompt": [
+      "装个 ffmpeg",
+      "install yt-dlp",
+      "下载一下 7-zip"
+    ]
+  }
+}

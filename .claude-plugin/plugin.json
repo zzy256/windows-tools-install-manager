@@ -1,10 +1,24 @@
 {
   "name": "windows-tools-install-manager",
   "version": "1.0.0",
-  "description": "Standardize installs of system-level Windows tools (ffmpeg, 7zip, OCR engines, CLIs, GUI apps) to a single configurable root with user-scope PATH auto-management. Asks before installing, enforces silent install + custom path flags, and clearly excludes Python/npm packages and OS components.",
+  "description": "Standardize installs of system-level Windows tools (ffmpeg, 7zip, OCR engines, CLIs, GUI apps) to a configurable root with user-scope PATH auto-management. Self-configuring on first use.",
   "author": {
     "name": "zzy",
     "email": "ziyi.zheng0320@gmail.com"
   },
-  "homepage": ""
+  "homepage": "https://github.com/zzy/windows-tools-install-manager",
+  "repository": "https://github.com/zzy/windows-tools-install-manager",
+  "license": "MIT",
+  "keywords": [
+    "windows",
+    "install",
+    "tools",
+    "ffmpeg",
+    "7zip",
+    "tesseract",
+    "path-management",
+    "skill",
+    "claude-code",
+    "codex"
+  ]
 }
