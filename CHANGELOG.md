@@ -29,4 +29,4 @@ Initial public release.
 ### Notes
 
 - Windows-only by design. macOS/Linux users would need to fork and adapt the PowerShell snippets.
-- Sister skill: [miniconda-python-env](https://github.com/zzy/miniconda-python-env) for Python package management.
+- Sister skill: [miniconda-python-env](https://github.com/zzy256/miniconda-python-env) for Python package management.

@@ -24,7 +24,7 @@ A Claude Code / Codex skill that **standardizes installs of system-level Windows
 
 **Copy the entire block below (including the `>` quote marks) and paste to your AI:**
 
-> Please install AND configure this skill for me: `https://github.com/zzy/windows-tools-install-manager`
+> Please install AND configure this skill for me: `https://github.com/zzy256/windows-tools-install-manager`
 >
 > Steps:
 >
@@ -49,7 +49,7 @@ A Claude Code / Codex skill that **standardizes installs of system-level Windows
 >
 > 6. **Do NOT try to run `setup.ps1`** — it requires interactive stdin that won't work in your session. You're replacing what setup.ps1 does (writing the config + dropping SKILL.md) by doing steps 2 and 3 above.
 >
-> 7. **Recommend** the sister skill `miniconda-python-env` for Python work: `https://github.com/zzy/miniconda-python-env` (install it the same way if I'm interested).
+> 7. **Recommend** the sister skill `miniconda-python-env` for Python work: `https://github.com/zzy256/miniconda-python-env` (install it the same way if I'm interested).
 
 After your AI finishes the steps above, **restart your agent**. The skill is installed AND configured — it'll work silently from your first real install task.
 
@@ -62,7 +62,7 @@ After your AI finishes the steps above, **restart your agent**. The skill is ins
 In Claude Code, type:
 
 ```
-/plugin marketplace add https://github.com/zzy/windows-tools-install-manager
+/plugin marketplace add https://github.com/zzy256/windows-tools-install-manager
 /plugin install windows-tools-install-manager@windows-tools-install-manager
 ```
 
@@ -80,7 +80,7 @@ Restart Claude Code. The next time you say something like "装个 ffmpeg" or "in
 Best if you want **zero prompts at first use** — e.g., setting this up via a one-line install script in your own dotfiles repo:
 
 ```powershell
-git clone https://github.com/zzy/windows-tools-install-manager.git
+git clone https://github.com/zzy256/windows-tools-install-manager.git
 cd windows-tools-install-manager
 .\setup.ps1
 ```
@@ -142,7 +142,7 @@ The skill description includes precise NOT-USE cases (Python packages, opinions/
 
 ## Sister skill
 
-For **Python package management** (deliberately NOT this skill's job), see **[miniconda-python-env](https://github.com/zzy/miniconda-python-env)** — handles Python deps via Miniconda envs with cleanup rules for temp scripts. The two skills cross-reference each other.
+For **Python package management** (deliberately NOT this skill's job), see **[miniconda-python-env](https://github.com/zzy256/miniconda-python-env)** — handles Python deps via Miniconda envs with cleanup rules for temp scripts. The two skills cross-reference each other.
 
 ## Requirements
 
