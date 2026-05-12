@@ -1,0 +1,9 @@
+{
+  "name": "windows-tools-install-manager",
+  "version": "1.0.0",
+  "description": "Standardize installs of system-level Windows tools (ffmpeg, 7zip, OCR engines, CLIs, GUI apps) to a single configurable root with user-scope PATH auto-management. Asks before installing, enforces silent install + custom path flags, and clearly excludes Python/npm packages and OS components.",
+  "author": {
+    "name": "ziyi.zheng0320@gmail.com"
+  },
+  "homepage": ""
+}
