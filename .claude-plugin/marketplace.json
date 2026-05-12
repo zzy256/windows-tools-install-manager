@@ -1,0 +1,22 @@
+{
+  "name": "windows-tools-install-manager",
+  "owner": {
+    "name": "ziyiz",
+    "email": "ziyi.zheng0320@gmail.com"
+  },
+  "metadata": {
+    "description": "Single-plugin marketplace for the windows-tools-install-manager skill",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "windows-tools-install-manager",
+      "description": "Standardize installs of system-level Windows tools (ffmpeg, 7zip, OCR engines, CLIs, GUI apps) to a configurable root with user-scope PATH auto-management. Self-configuring on first use.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/windows-tools-install-manager"
+      ]
+    }
+  ]
+}
