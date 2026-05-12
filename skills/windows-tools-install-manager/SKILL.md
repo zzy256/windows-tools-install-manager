@@ -31,21 +31,36 @@ Do NOT mention this to the user — it's silent infrastructure. Just use `<INSTA
 
 This is the first time the skill is being used. Tell the user, in ONE clear message:
 
-> 这是 **windows-tools-install-manager** 第一次启用,需要你确认一下默认安装位置。
+> 我是 **windows-tools-install-manager** skill,第一次启用,需要你帮我设置一个路径。
 >
-> 我以后会把你让我装的所有系统工具(ffmpeg、7zip、tesseract、yt-dlp、OBS 等)放在 ONE 个根目录下,每个工具自己一个子文件夹:
+> ⚠️ **这个路径 ≠ skill 自己的安装位置** —— skill 文件已经装好在 `~/.claude/skills/windows-tools-install-manager/` 里了,不需要你管。
 >
-> - `<YOUR_ROOT>\ffmpeg\`
-> - `<YOUR_ROOT>\7zip\`
-> - `<YOUR_ROOT>\tesseract\`
+> **这个路径 = 以后你让我帮你装其他软件工具时,这些工具应该被放在哪里。**
 >
-> 推荐用 **`D:\Tools`**(如果你有 D 盘); 也可以是 `C:\MyTools`、`D:\Apps`、`E:\Software`,或者其他你想要的绝对路径。
+> 举例:以后你说"装个 ffmpeg",ffmpeg 会被放到 `<你选的根目录>\ffmpeg\`;同理 7zip 会到 `<根目录>\7zip\`,tesseract 会到 `<根目录>\tesseract\`,以此类推 —— 每个工具一个子文件夹,全都在你选的这一个根目录下面。
 >
-> 你选哪个? 回 OK 用默认 `D:\Tools`,或者直接说一个新路径(例:`C:\MyTools`)。我会记到 `~/.config/claude-skills/windows-tools-install-manager.json`,以后不再问。
+> ---
+>
+> **请二选一回复:**
+>
+> **选项 A — 用默认值** 
+> 回复 "OK" 或 "默认",我用 **`D:\Tools`**(适合有 D 盘的用户)
+>
+> **选项 B — 自定义路径**
+> 直接回复一个你想要的绝对 Windows 路径,例如:
+> - `C:\MyTools`
+> - `D:\Apps`
+> - `E:\Software`
+> - 或者任何其他你想用的绝对路径(必须是 `<盘符>:\...` 格式)
+>
+> ---
+>
+> 你回答之后,我会保存到 `~/.config/claude-skills/windows-tools-install-manager.json`,**以后所有启用都不会再问这个问题**。
 
 Wait for the user's reply. Parse:
-- "OK" / "默认" / empty → use `D:\Tools`
-- Anything else → treat as an absolute Windows path
+- "OK" / "默认" / 空回复 → use `D:\Tools`
+- An absolute Windows path matching `^[A-Za-z]:\\` → use it
+- Anything else (ambiguous reply, relative path, etc.) → re-ask, clarify you need an absolute path
 
 Validate the answer roughly looks like a Windows path (matches `^[A-Za-z]:\\`). If it doesn't, ask again.
 
