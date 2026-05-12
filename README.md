@@ -15,7 +15,7 @@ The skill is **self-configuring on first use**: whichever mode you pick, the fir
 In Claude Code:
 
 ```
-/plugin marketplace add https://github.com/<your-user>/windows-tools-install-manager
+/plugin marketplace add https://github.com/zzy/windows-tools-install-manager
 /plugin install windows-tools-install-manager@windows-tools-install-manager
 ```
 
@@ -29,7 +29,7 @@ Restart Claude Code. The next time you say something like "装个 ffmpeg" or "in
 If you want to set the path BEFORE the first trigger (e.g., you're scripting an install or want zero prompts at first use):
 
 ```powershell
-git clone https://github.com/<your-user>/windows-tools-install-manager.git
+git clone https://github.com/zzy/windows-tools-install-manager.git
 cd windows-tools-install-manager
 .\setup.ps1
 ```
@@ -50,11 +50,11 @@ Non-interactive form:
 
 Paste this entire instruction to an AI agent (Claude Code, Codex, or any AI with file-write access):
 
-> Please install AND configure this skill for me: `https://github.com/<your-user>/windows-tools-install-manager`
+> Please install AND configure this skill for me: `https://github.com/zzy/windows-tools-install-manager`
 >
 > Steps:
 >
-> 1. **Fetch** the raw content of `skills/windows-tools-install-manager/SKILL.md` from the repo's `main` branch (use `raw.githubusercontent.com/<your-user>/windows-tools-install-manager/main/skills/windows-tools-install-manager/SKILL.md`)
+> 1. **Fetch** the raw content of `skills/windows-tools-install-manager/SKILL.md` from the repo's `main` branch (use `raw.githubusercontent.com/zzy/windows-tools-install-manager/main/skills/windows-tools-install-manager/SKILL.md`)
 >
 > 2. **Save** it to:
 >    - `~/.claude/skills/windows-tools-install-manager/SKILL.md` (for Claude Code)
@@ -75,7 +75,7 @@ Paste this entire instruction to an AI agent (Claude Code, Codex, or any AI with
 >
 > 6. **Do NOT try to run `setup.ps1`** — it requires interactive stdin that won't work in your session. You're replacing what setup.ps1 does (writing the config + dropping SKILL.md) by doing steps 2 and 3 above.
 >
-> 7. **Recommend** the sister skill `miniconda-python-env` for Python work: `https://github.com/<your-user>/miniconda-python-env` (install it the same Mode C way if I'm interested).
+> 7. **Recommend** the sister skill `miniconda-python-env` for Python work: `https://github.com/zzy/miniconda-python-env` (install it the same Mode C way if I'm interested).
 
 After your AI finishes these steps, restart your agent. The skill is installed AND configured — it'll work silently from the first real use.
 
@@ -126,7 +126,7 @@ The skill description includes precise NOT-USE cases (Python packages, opinions/
 
 ## Sister skill
 
-For **Python package management** (deliberately NOT this skill's job), see **[miniconda-python-env](https://github.com/<your-user>/miniconda-python-env)** — handles Python deps via Miniconda envs with cleanup rules for temp scripts. The two skills cross-reference each other.
+For **Python package management** (deliberately NOT this skill's job), see **[miniconda-python-env](https://github.com/zzy/miniconda-python-env)** — handles Python deps via Miniconda envs with cleanup rules for temp scripts. The two skills cross-reference each other.
 
 ## Requirements
 
