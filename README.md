@@ -46,20 +46,40 @@ Non-interactive form:
 .\setup.ps1 -InstallRoot "C:\MyTools" -Agent claude -Force
 ```
 
-### Mode C — Ask an AI to install it for you
+### Mode C — Ask an AI to install + configure it for you (most turnkey)
 
-Paste this entire instruction to an AI agent (Claude Code, Codex, ChatGPT with file access, etc.):
+Paste this entire instruction to an AI agent (Claude Code, Codex, or any AI with file-write access):
 
-> Please install this skill for me: `https://github.com/<your-user>/windows-tools-install-manager`
+> Please install AND configure this skill for me: `https://github.com/<your-user>/windows-tools-install-manager`
 >
 > Steps:
-> 1. Fetch the raw content of `skills/windows-tools-install-manager/SKILL.md` from the repo's `main` branch (e.g., via `raw.githubusercontent.com`)
-> 2. Save it to **`~/.claude/skills/windows-tools-install-manager/SKILL.md`** (for Claude Code) AND/OR **`~/.agents/skills/windows-tools-install-manager/SKILL.md`** (for Codex) — create parent dirs as needed
-> 3. Confirm to me that it's installed and tell me what the skill does
-> 4. Note: do NOT try to run `setup.ps1` — it requires interactive stdin which won't work in your session. The skill self-configures on first trigger.
-> 5. Suggest I restart my agent so it picks up the new skill
+>
+> 1. **Fetch** the raw content of `skills/windows-tools-install-manager/SKILL.md` from the repo's `main` branch (use `raw.githubusercontent.com/<your-user>/windows-tools-install-manager/main/skills/windows-tools-install-manager/SKILL.md`)
+>
+> 2. **Save** it to:
+>    - `~/.claude/skills/windows-tools-install-manager/SKILL.md` (for Claude Code)
+>    - AND/OR `~/.agents/skills/windows-tools-install-manager/SKILL.md` (for Codex)
+>    - Create parent directories as needed
+>
+> 3. **Auto-configure right now** (don't wait for the first natural trigger):
+>    Open the SKILL.md you just saved, find the section titled **"Step 0 — Path Configuration"**, then execute its **"Case 2 — Config file MISSING"** branch on my behalf immediately. That means:
+>    - Show me the full path explanation from Step 0 (what `<INSTALL_ROOT>` is, where it gets used, with examples and default suggestion)
+>    - Wait for my answer (a path, or "OK" for the default `D:\Tools`)
+>    - Validate it looks like an absolute Windows path
+>    - Save my answer to `~/.config/claude-skills/windows-tools-install-manager.json` in the exact format Step 0 specifies (`{"install_root": "..."}`)
+>    - Confirm the config to me
+>
+> 4. **Summarize** what got installed (file paths), what was configured (the chosen InstallRoot), and what the skill does in one short paragraph.
+>
+> 5. **Recommend** I restart my agent (Claude Code / Codex) so it picks up the new skill.
+>
+> 6. **Do NOT try to run `setup.ps1`** — it requires interactive stdin that won't work in your session. You're replacing what setup.ps1 does (writing the config + dropping SKILL.md) by doing steps 2 and 3 above.
+>
+> 7. **Recommend** the sister skill `miniconda-python-env` for Python work: `https://github.com/<your-user>/miniconda-python-env` (install it the same Mode C way if I'm interested).
 
-The skill will then ask for the install root the first time it activates.
+After your AI finishes these steps, restart your agent. The skill is installed AND configured — it'll work silently from the first real use.
+
+> 💡 **If your AI doesn't have file-write access** (e.g., a pure chat AI without tools), use Mode A or B instead.
 
 ---
 
