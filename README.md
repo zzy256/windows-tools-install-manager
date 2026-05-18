@@ -35,7 +35,7 @@ A Claude Code / Codex skill that **standardizes installs of system-level Windows
 >
 > **Step 2 — Save.** Write that file to BOTH paths below (create parent dirs as needed):
 > - Claude Code: `$env:USERPROFILE\.claude\skills\windows-tools-install-manager\SKILL.md` (Windows) — or `~/.claude/skills/windows-tools-install-manager/SKILL.md`
-> - Codex: `$env:USERPROFILE\.agents\skills\windows-tools-install-manager\SKILL.md` (Windows) — or `~/.agents/skills/windows-tools-install-manager/SKILL.md`
+> - Codex: `$env:USERPROFILE\.codex\skills\windows-tools-install-manager\SKILL.md` (Windows) — or `~/.codex/skills/windows-tools-install-manager/SKILL.md`
 >
 > **Step 3 — ASK ME this question NOW. STOP and wait for my reply before proceeding.**
 >
@@ -111,7 +111,7 @@ cd windows-tools-install-manager
 `setup.ps1` will:
 1. Ask for the install root (with detailed explanation in PowerShell)
 2. Write `~/.config/claude-skills/windows-tools-install-manager.json` for you
-3. Copy `SKILL.md` into both `~/.claude/skills/...` and `~/.agents/skills/...`
+3. Copy `SKILL.md` into both `~/.claude/skills/...` and `~/.codex/skills/...`
 
 After this, the skill is installed AND pre-configured — the first natural trigger reads the config silently, no prompt.
 

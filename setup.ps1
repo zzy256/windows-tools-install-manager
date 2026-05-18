@@ -167,7 +167,7 @@ if ($Agent -in @('claude', 'both')) {
 if ($Agent -in @('codex', 'both')) {
     $targets += [PSCustomObject]@{
         Agent = 'Codex'
-        Path  = Join-Path $env:USERPROFILE '.agents\skills\windows-tools-install-manager'
+        Path  = Join-Path $env:USERPROFILE '.codex\skills\windows-tools-install-manager'
     }
 }
 

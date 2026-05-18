@@ -1,6 +1,20 @@
 ---
 name: windows-tools-install-manager
-description: Use when installing or upgrading a system-level tool, CLI / GUI app, utility, archive tool, Miniconda itself (incl. when chained from miniconda-python-env), or other end-user program on this Windows machine — both when the user explicitly asks ("install X", "upgrade X", "装/安装/装个/搞一个/升级 X") AND when you discover mid-task that a required system tool isn't installed (e.g., tesseract for OCR, ffmpeg for video, 7zip, gh CLI). Default install root D:\Tools\<tool-name>\ (user-configurable). Do NOT use for: Python packages (→ miniconda-python-env), Node/npm packages inside a project, Claude Code / Codex / Cursor themselves, OS components / drivers / Windows Updates, code compilation ("compile this C++", "编译一下"), read-only questions ("what does X do", "explain Y", "X vs Y", "哪个更好"), looking up where an existing install lives ("X 装在哪"), cases where the user states the tool is already installed, uninstall / delete operations ("删了 X", "卸载 X"), extensions for VS Code or browsers, or Steam / game installs.
+description: >-
+  Use when installing or upgrading a system-level tool, CLI / GUI app, utility,
+  archive tool, Miniconda itself (incl. when chained from miniconda-python-env),
+  or other end-user program on this Windows machine — both when the user
+  explicitly asks ("install X", "upgrade X", "装/安装/装个/搞一个/升级 X") AND
+  when you discover mid-task that a required system tool isn't installed (e.g.,
+  tesseract for OCR, ffmpeg for video, 7zip, gh CLI). Default install root
+  D:\Tools\<tool-name>\ (user-configurable). Do NOT use for — Python packages
+  (→ miniconda-python-env); Node/npm packages inside a project; Claude Code /
+  Codex / Cursor themselves; OS components / drivers / Windows Updates; code
+  compilation ("compile this C++", "编译一下"); read-only questions ("what does
+  X do", "explain Y", "X vs Y", "哪个更好"); looking up where an existing
+  install lives ("X 装在哪"); cases where the user states the tool is already
+  installed; uninstall / delete operations ("删了 X", "卸载 X"); extensions for
+  VS Code or browsers; or Steam / game installs.
 ---
 
 # Install Casual Tools to a Configurable Root
