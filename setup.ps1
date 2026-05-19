@@ -2,7 +2,7 @@
 
 <#
 .SYNOPSIS
-[Mode B install] Pre-configure paths AND copy the skill to your agent.
+[Mode 3 install] Pre-configure paths AND copy the skill to your agent.
 
 .DESCRIPTION
 This is the "power user" install path. It does TWO things:
@@ -11,8 +11,8 @@ This is the "power user" install path. It does TWO things:
      ...so the skill won't prompt you for paths on first use.
   2. Copies the skill's SKILL.md into your agent's skills directory.
 
-If you'd rather have the skill ask you on first trigger (Mode A or C), you
-don't need this script — just install the plugin via `/plugin install` or
+If you'd rather have the skill ask you on first trigger (Mode 1 or Mode 2), you
+don't need this script - just install the plugin via `/plugin install` or
 have an AI drop SKILL.md for you. See README.md.
 
 .PARAMETER InstallRoot
@@ -45,7 +45,7 @@ $ErrorActionPreference = 'Stop'
 
 # ----- AI-agent / non-interactive guard -----
 # If stdin is redirected (AI tool call context) AND no -InstallRoot was passed,
-# Read-Host silently returns empty and the script falls back to default — meaning
+# Read-Host silently returns empty and the script falls back to default - meaning
 # the user never gets asked. Refuse to proceed in that case.
 if ([string]::IsNullOrWhiteSpace($InstallRoot) -and [System.Console]::IsInputRedirected) {
     Write-Host ""
@@ -55,15 +55,15 @@ if ([string]::IsNullOrWhiteSpace($InstallRoot) -and [System.Console]::IsInputRed
     Write-Host ""
     Write-Host "You appear to be running setup.ps1 inside an AI agent's tool call"
     Write-Host "(Codex, Claude Code's Bash, etc.). The script's interactive Read-Host"
-    Write-Host "prompts WILL NOT reach the human user — they'll silently return empty"
+    Write-Host "prompts WILL NOT reach the human user - they'll silently return empty"
     Write-Host "and the script will use defaults without asking. That's a UX bug."
     Write-Host ""
     Write-Host "If you are an AI agent installing this skill for a user:" -ForegroundColor Yellow
-    Write-Host "  Use Mode 1 in the README instead — fetch SKILL.md directly via"
+    Write-Host "  Use Mode 1 in the README instead - fetch SKILL.md directly via"
     Write-Host "  raw.githubusercontent.com, ASK the user for the install root,"
     Write-Host "  then write the config JSON file at"
     Write-Host "  ~/.config/claude-skills/windows-tools-install-manager.json"
-    Write-Host "  (full prompt template in README's '⭐ Mode 1' section)."
+    Write-Host "  (full prompt template in README's 'Mode 1' section)."
     Write-Host ""
     Write-Host "If you are a human running this from a real terminal:" -ForegroundColor Yellow
     Write-Host "  Either invoke from an interactive PowerShell (no piping/redirect),"
@@ -76,7 +76,7 @@ if ([string]::IsNullOrWhiteSpace($InstallRoot) -and [System.Console]::IsInputRed
 # ----- Banner -----
 Write-Host ""
 Write-Host "==================================================================" -ForegroundColor Cyan
-Write-Host "  windows-tools-install-manager  — Mode B install (pre-config)" -ForegroundColor Cyan
+Write-Host "  windows-tools-install-manager  - Mode 3 install (pre-config)" -ForegroundColor Cyan
 Write-Host "==================================================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "This skill standardizes how your AI agent installs system-level"
@@ -84,7 +84,7 @@ Write-Host "Windows tools (ffmpeg, 7zip, tesseract, gh CLI, OBS, Notepad++, etc.
 Write-Host "to ONE directory you choose, and auto-adds each tool's bin folder"
 Write-Host "to your user-scope PATH."
 Write-Host ""
-Write-Host "Mode B (this script) lets you set the InstallRoot upfront, so the"
+Write-Host "Mode 3 (this script) lets you set the InstallRoot upfront, so the"
 Write-Host "skill won't ask the first time you use it." -ForegroundColor Yellow
 Write-Host ""
 
@@ -129,10 +129,10 @@ if ($InstallRoot -notmatch '^[A-Za-z]:\\') {
 }
 
 Write-Host ""
-Write-Host "  ✓ InstallRoot = $InstallRoot" -ForegroundColor Green
+Write-Host "  [OK] InstallRoot = $InstallRoot" -ForegroundColor Green
 Write-Host ""
 
-# ----- Step 1: write config file (this is what makes Mode B different from Mode A) -----
+# ----- Step 1: write config file (this is what makes Mode 3 different from Mode 2) -----
 $cfgDir = Join-Path $env:USERPROFILE '.config\claude-skills'
 $cfgPath = Join-Path $cfgDir 'windows-tools-install-manager.json'
 
@@ -147,13 +147,13 @@ if ((Test-Path $cfgPath) -and -not $Force) {
     else {
         New-Item -ItemType Directory -Path $cfgDir -Force | Out-Null
         @{ install_root = $InstallRoot } | ConvertTo-Json | Set-Content -Path $cfgPath -Encoding UTF8
-        Write-Host "  ✓ Wrote config: $cfgPath" -ForegroundColor Green
+        Write-Host "  [OK] Wrote config: $cfgPath" -ForegroundColor Green
     }
 }
 else {
     New-Item -ItemType Directory -Path $cfgDir -Force | Out-Null
     @{ install_root = $InstallRoot } | ConvertTo-Json | Set-Content -Path $cfgPath -Encoding UTF8
-    Write-Host "  ✓ Wrote config: $cfgPath" -ForegroundColor Green
+    Write-Host "  [OK] Wrote config: $cfgPath" -ForegroundColor Green
 }
 
 # ----- Step 2: copy SKILL.md to agent skill dirs -----
@@ -186,7 +186,7 @@ foreach ($target in $targets) {
 
     New-Item -ItemType Directory -Path $target.Path -Force | Out-Null
     Copy-Item -Path $skillSource -Destination $outFile -Force
-    Write-Host "  ✓ [$($target.Agent)] $outFile" -ForegroundColor Green
+    Write-Host "  [OK] [$($target.Agent)] $outFile" -ForegroundColor Green
 }
 
 # ----- Summary -----
@@ -197,7 +197,7 @@ Write-Host "==================================================================" 
 Write-Host ""
 Write-Host "  Next steps:" -ForegroundColor Yellow
 Write-Host "    1. Restart Claude Code / Codex (close and reopen)"
-Write-Host "    2. Try saying:  '装个 ffmpeg'  or  'install yt-dlp'"
+Write-Host "    2. Try saying:  'install ffmpeg'  or  'install yt-dlp'"
 Write-Host "       The skill should activate, read the config, and propose"
 Write-Host "       an install plan WITHOUT asking you for a path."
 Write-Host ""

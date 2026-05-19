@@ -5,6 +5,16 @@ All notable changes to `windows-tools-install-manager` are documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] — 2026-05-18
+
+### Fixed
+
+- Removed a Python-package example from the Windows tool skill's missing-tool scenarios so Excel/data dependencies route to `miniconda-python-env` instead of this skill.
+- Replaced ambiguous lettered mode wording with the public Mode 1/2/3 terminology.
+- Added a README fallback command for Windows PowerShell execution-policy blocks.
+- Made user PATH de-duplication compare exact path entries instead of substring matches.
+- Switched `setup.ps1` status output to ASCII to avoid mojibake in Windows PowerShell 5.
+
 ## [1.0.1] — 2026-05-18
 
 Critical bug-fix release. v1.0.0 was unusable on Codex due to two issues:
@@ -17,7 +27,7 @@ Critical bug-fix release. v1.0.0 was unusable on Codex due to two issues:
 ### Notes
 
 - If you installed v1.0.0 via Codex, your `~/.codex/skills/windows-tools-install-manager/SKILL.md` (if you installed this one) needs to be re-fetched from `main`. Easiest: paste the Mode 1 prompt again, or just overwrite the file from the latest raw URL.
-- v1.0.0 Claude Code installs continue to work — Claude Code's parser tolerated the invalid YAML. But re-fetching v1.0.1 is still recommended for cleanliness.
+- v1.0.0 Claude Code installs continue to work — Claude Code's parser tolerated the invalid YAML. But re-fetching the latest release is still recommended for cleanliness.
 
 ## [1.0.0] — 2026-05-12
 

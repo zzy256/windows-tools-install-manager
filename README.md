@@ -108,6 +108,12 @@ cd windows-tools-install-manager
 .\setup.ps1
 ```
 
+If Windows PowerShell blocks script execution on your machine, run the same script with a one-time execution-policy bypass:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+```
+
 `setup.ps1` will:
 1. Ask for the install root (with detailed explanation in PowerShell)
 2. Write `~/.config/claude-skills/windows-tools-install-manager.json` for you
@@ -151,7 +157,7 @@ The path is stored in `~/.config/claude-skills/windows-tools-install-manager.jso
 
 1. **Ask the AI:** "把 install root 改成 E:\NewTools" → it'll edit the JSON for you
 2. **Edit the JSON file** with any text editor
-3. **Re-run `setup.ps1 -InstallRoot ... -Force`** from the repo (if you installed via Mode B)
+3. **Re-run `setup.ps1 -InstallRoot ... -Force`** from the repo (if you installed via Mode 3)
 
 Next invocation reads the new value silently.
 
@@ -172,7 +178,7 @@ For **Python package management** (deliberately NOT this skill's job), see **[mi
 - Windows 10 / 11
 - PowerShell 5+ (built-in)
 - Claude Code and/or Codex installed
-- git (only for Mode B install)
+- git (only for Mode 3 install)
 
 ## License
 

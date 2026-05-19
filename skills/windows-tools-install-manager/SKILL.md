@@ -117,7 +117,6 @@ Whenever a software tool needs to be installed on this Windows machine — wheth
 Examples:
 - User asks: "提取这个 PDF 的文字" → you check the PDF, it's image-based, needs OCR → tesseract not installed
 - User asks: "把这段视频转成 GIF" → ffmpeg not installed
-- User asks: "处理这个 Excel" → pandas/openpyxl not installed in current env
 - User asks: "压缩这个文件夹" → 7zip / archive tool needed
 
 In this case:
@@ -212,8 +211,13 @@ Then run the chosen install method.
 ```powershell
 $bin = "$InstallRoot\<name>"   # or "$InstallRoot\<name>\bin" if the tool uses a bin subfolder
 $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
-if ($userPath -notlike "*$bin*") {
-    [Environment]::SetEnvironmentVariable("Path", "$userPath;$bin", "User")
+$existing = @($userPath -split ';' | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | ForEach-Object {
+    $_.Trim().TrimEnd('\')
+})
+$candidate = $bin.TrimEnd('\')
+if ($existing -notcontains $candidate) {
+    $newPath = (@($existing) + $candidate) -join ';'
+    [Environment]::SetEnvironmentVariable("Path", $newPath, "User")
 }
 ```
 
@@ -289,6 +293,6 @@ The user can change the configured root any time by:
 
 1. **Asking you (the AI) to change it:** "把 install root 改成 E:\NewTools" → you edit `~/.config/claude-skills/windows-tools-install-manager.json`
 2. **Editing the JSON file directly** with any text editor
-3. **Re-running `setup.ps1 -InstallRoot ... -Force`** from the plugin's git repo (if installed via Mode B)
+3. **Re-running `setup.ps1 -InstallRoot ... -Force`** from the plugin's git repo (if installed via Mode 3)
 
 Next invocation reads the new value silently.
