@@ -8,10 +8,17 @@ A Claude Code / Codex skill that **standardizes installs of system-level Windows
 
 ## AI INSTALLER QUICKSTART
 
-If a user gives you this repo and says something like:
+If a user gives you this repository URL and asks in any wording to install, add, set up, enable, configure, or use this skill, treat it as a Mode 1 AI install request.
+
+Equivalent examples:
 
 ```text
 请帮我安装这个 skill: https://github.com/zzy256/windows-tools-install-manager
+给我安装这个 skill https://github.com/zzy256/windows-tools-install-manager
+帮我装一下这个 Codex skill https://github.com/zzy256/windows-tools-install-manager
+install this skill https://github.com/zzy256/windows-tools-install-manager
+set up this Claude/Codex skill https://github.com/zzy256/windows-tools-install-manager
+enable this skill from https://github.com/zzy256/windows-tools-install-manager
 ```
 
 you are the installer. Do **not** ask the user to read this README or run a script. Execute these steps now:

@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Single-plugin marketplace for the windows-tools-install-manager skill",
-    "version": "1.0.3"
+    "version": "1.0.4"
   },
   "plugins": [
     {
