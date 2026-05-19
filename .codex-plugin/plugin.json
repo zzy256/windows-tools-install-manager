@@ -1,6 +1,6 @@
 {
   "name": "windows-tools-install-manager",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Standardize installs of system-level Windows tools (ffmpeg, 7zip, OCR engines, CLIs, GUI apps) to a configurable root with user-scope PATH auto-management. Self-configuring on first use.",
   "author": {
     "name": "zzy",
