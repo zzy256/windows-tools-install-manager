@@ -273,7 +273,7 @@ If silent install with custom path **fails or isn't supported**:
 | Auto-creating `<INSTALL_ROOT>\` when it doesn't exist | Stop and ask the user — absence may be intentional |
 | Folder name with spaces or capitals (`Tesseract OCR`) | Lowercase kebab-case (`tesseract`) |
 | Modifying Machine-scope PATH | User scope only — no admin needed and reversible |
-| Adding the same directory to PATH twice | Check existing user PATH first with `-notlike` |
+| Adding the same directory to PATH twice | Split user PATH by `;`, trim each entry, and check with `-notcontains` (exact match) — `-notlike "*$bin*"` falsely matches when the path is a substring of another entry |
 | Running installer without silent flag → GUI window hangs forever | Always use silent flags for non-interactive installs |
 | Installing Claude Code / Codex via this skill | Excluded — those have their own install conventions |
 | Forgetting to tell the user to restart their terminal | PATH changes only apply to newly opened shells |

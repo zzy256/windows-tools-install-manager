@@ -5,6 +5,12 @@ All notable changes to `windows-tools-install-manager` are documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] — 2026-05-19
+
+### Fixed
+
+- SKILL.md Common Mistakes table for PATH de-duplication referenced the old `-notlike "*$bin*"` substring check, but the body code in Step 6 had already been switched to an exact-match check (split `;`, trim, `-notcontains`). Updated the Common Mistakes entry to match the actual code and explain why substring matching was wrong (false positives when one tool's bin folder is a prefix of another's, e.g., `D:\Tools` versus `D:\Tools-archive`).
+
 ## [1.0.4] — 2026-05-19
 
 ### Changed
